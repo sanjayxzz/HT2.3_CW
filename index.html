@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Empolyee Details</title>
+</head>
+
+<body>
+  <header>
+    <a href="index.html">Company Logo</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="empolyee.html">Employee</a></li>
+      </ul>
+    </nav>
+    <h2>Employee Details</h2>
+  </header>
+  <main>
+
+    <section id="employeeDetails">
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Company Name. All right reserved</p>
+  </footer>
+
+  <script>
+    const employeeData = [
+      {id: "1", name: "John Doe", title: "Software Developer", department: "IT"},
+      {id: "2", name: "Jane Smith", title: "Designer", department: "Design"},
+      {id: "3", name: "Bob Johnson", title: "Project Manager", department: "Management"}
+    ]
+
+    function getParamsById(id) {
+      let url = new URL(window.location.href)
+
+      return url.searchParams.get(id)
+    }
+
+    let empolyeeId = getParamsById('id')
+
+    let employee;
+    for (let i = 0; i < employeeData.length; i++) {
+      if (employeeData[i].id === empolyeeId) {
+        employee = employeeData[i]
+      }
+    }
+
+    let employeeDetailElement = document.getElementById('employeeDetails')
+    if (employee) {
+      employeeDetailElement.innerHTML = `
+       <h2>${employee.name}</h2>
+       <ul>
+       <li>Name: ${employee.name}</li>
+       <li>Designation: ${employee.title}</li>
+       <li>Department: ${employee.department}</li>
+       </ul>
+      `
+    } else {
+      employeeDetailElement.innerHTML = `Employee not found`
+    }
+
+
+
+  </script>
+</body>
+
+</html>
